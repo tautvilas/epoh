@@ -8,6 +8,8 @@ Multiplayer server: http://www.epoh.io
 
 Singleplayer demo: https://tautvilas.github.io/epoh/
 
+![EPOH screenshot](https://tautvilas.github.com/epoh/img/screen.png)
+
 ## Gameplay guide ##
 
 ###Your first turn:###
