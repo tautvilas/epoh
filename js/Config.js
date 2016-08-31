@@ -15,8 +15,8 @@ var Config = {
   MINE_MONEY: 25,
   UNIT_SUPPORT: 5,
 
-  TICK_LENGTH: 20000,
-  ROUND_LENGTH: 30000,
+  TICK_LENGTH: 60000,
+  ROUND_LENGTH: 3000000,
 
   MOCK_PLAYERS: [{name: 'bobby', sector: 'A'}],
   MOCK_UNITS: [
