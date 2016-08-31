@@ -63,4 +63,4 @@ To build bundle.js, used when PRODUCTION is true in Config.js
 
 ## Misc ##
 
-[Map generation visualization](https://tautvilas.github.io/epoh.perlin.html) (takes time to load)
+[Map generation visualization](https://tautvilas.github.io/epoh/perlin.html) (takes time to load)
