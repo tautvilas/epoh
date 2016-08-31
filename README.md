@@ -64,4 +64,5 @@ To build bundle.js, used when PRODUCTION is true in Config.js
 ## Misc ##
 
 [Map generation visualization](https://tautvilas.github.io/epoh/perlin.html) (takes time to load)
+
 [Info about cube coordinates calculation](http://www.redblobgames.com/grids/hexagons/)
