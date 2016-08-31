@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4em;
+  font-size: 1em;
+  font-family: "Courier New", Courier, monospace;
+  color: #171717;
+}
+
+body, html {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background-color: #eee;
+}
+
+#blocker {
+  height: 100%;
+  background-color: #eee;
+  z-index: 1000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  opacity: 0;
+  width: 100%;
+}
+
+#blocker.visible {
+  transition: visibility 0s, opacity 0s linear;
+  opacity: 0.2;
+  visibility: visible;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+#login, #game {
+  display: none;
+}
+
+#game, #map {
+  position:relative;
+  height: 100%;
+}
+
+#map {
+  overflow: hidden;
+  float: left;
+  width: 100%;
+}
+
+.unit {
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  margin: -13px 7px;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-style: solid;
+  border-color: white;
+  border-width: 0px;
+  transition: all 0.5s ease-in-out;
+}
+
+.notransition .unit {
+  transition: none !important;
+}
+
+.unit[active=true] {
+  border-color: red;
+}
+
+.unit .health {
+  height: 2px;
+  width: 100%;
+  background-color: #5ff342;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  z-index: 3;
+}
+
+.unit.enemy .health {
+  background-color: red;
+}
+
+.unit.garrisoned::before {
+  content: 'G';
+  color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#cursor {
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hex {
+  background-color: green;
+  z-index: 0;
+  border-style: solid;
+  border-width: 0px 1px;
+  width: 90px;
+  height: 52px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.hex .intent {
+  transform: rotate(60deg);
+  border-left: 45px solid #26c131;
+  border-top: 26px solid rgba(255, 0, 0, 0);
+  position: absolute;
+  border-right: 45px solid rgba(255, 0, 0, 0);
+  border-bottom: 26px solid rgba(255, 0, 0, 0);
+  z-index: 10;
+}
+
+.hex .field {
+  transform: rotate(60deg);
+  position: absolute;
+  width: 84px;
+  height: 52px;
+  border-left: 5px solid lightgreen;
+  z-index: 11;
+}
+
+.hex .field.enemy {
+  border-color: red
+}
+
+.hex.grass {
+  background-color: 'green';
+}
+
+.hex.water, .hex.water::before, .hex.water::after {
+  background-color: #006f7c;
+  background-image: url(../img/texture/water.png);
+}
+.hex.hills {
+  background-color: #fb7329;
+}
+.hex.mountains {
+  background-color: #ccc;
+} 
+.hex.plains {
+  background-color: #a04513;
+}
+.hex.shroud {
+  background-color: #171717;
+}
+
+.hex::before, .hex::after {
+  position: absolute;
+  border-color: inherit;
+  background-color: inherit;
+  border-style: inherit;
+  border-width: 0px 1px;
+  display: block;
+  content: '';
+  height: inherit;
+  width: inherit;
+  z-index: inherit;
+}
+
+.hex.undiscovered:not(.water)::before {
+  background-image: radial-gradient(circle at 10px, rgba(0,0,0,0) 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex.iron::before {
+  background-image: radial-gradient(circle at 10px, gray 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex.copper::before {
+  background-image: radial-gradient(circle at 10px, orange 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex.gold::before {
+  background-image: radial-gradient(circle at 10px, yellow 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex.oil::before {
+  background-image: radial-gradient(circle at 10px, black 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex.gas::before {
+  background-image: radial-gradient(circle at 10px, green 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex.coal::before {
+  background-image: radial-gradient(circle at 10px, white 2px, white 4px, rgba(0,0,0,0) 1px);
+}
+
+.hex::before {
+  transform: rotate(60deg);
+}
+
+.hex::after {
+  transform: rotate(-60deg);
+}
+
+.hex:hover {
+  border-color: #abcdef;
+  border-style: solid;
+  z-index: 1;
+}
+
+.hex[active=true] {
+  border-color: #26c131;
+  border-style: solid;
+  z-index: 1;
+}
+

@@ -1,0 +1,34 @@
+% 0.5
+
+?) mountains too bright, fog of war colors
+?) logging: add time & player name that is performing action
+?) what happens if I bombard building?
+?) each resouce should give unit
+*) add unit types to rules
+ux) highlight resource when cap reached
+?) different power for different power plants
+ux) update income after mine deconstruct
+*) community board
+?) check remove unit with intents on garrisoned
+
+o) merge sprites, merge css
+o) tiles behave buggily when recentering on slow connection and sometimes units start animating, cache sector tile data in frontend
+o) optimize field drawing via backend, maybe revamp field rendering as bg image, also add hue
+o) hex position optimization
+
+?) do not place player in sector if there is too much water in it
+
+x) unit appear/disappear animation
+x) show tile height diff
+x) show enemy intents after turn
+
+% 1.0
+
+*) improvements: fort / wall / bridge
+*) terraform water->land; land->water
+*) enable/disable units
+
+*) minimap
+*) trading
+*) alliances, prestige
+

@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+  <title>Epoh</title>
+  <meta property="og:image" content="http://epoh.io/img/unit/rover.png" />
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript">
+    'use strict';
+    var module = {};
+    var ScriptLoader = {};
+
+    var require = function(path) {
+      return window[path.replace('./', '')];
+    };
+
+    ScriptLoader.loadScripts = function(scripts, callback, position) {
+      var index = position ? position : 0;
+      if (!scripts[index]) {
+        callback();
+        return;
+      }
+      var fileref = document.createElement('script');
+      fileref.setAttribute("type","text/javascript");
+      fileref.setAttribute("src", scripts[index]);
+      fileref.onload = function() {
+        index++;
+        ScriptLoader.loadScripts(scripts, callback, index);
+      };
+      document.getElementsByTagName("head")[0].appendChild(fileref)
+    }
+  </script>
+  <link rel="stylesheet" type="text/css" href="css/map.css" />
+  <link rel="stylesheet" type="text/css" href="css/hud.css" />
+  <link rel="stylesheet" type="text/css" href="css/login.css" />
+</head>
+<body>
+  <form id="login" onsubmit="return false">
+    <div id="description">
+      At the end of the 21st century Earth became too hot to sustain life. The wealthiest individuals
+      gathered all their money and set up a space mission to an earth-like planet
+      codenamed EPOH. The surface area of this planet was divided into sectors and
+      assigned to space mission members. After 135 years of interstellar journey the spaceship
+
+      has finally reached its destination.
+    </div>
+    <input id="username" placeholder="Enter your name"/>
+    <button id="start">Enter EPOH</button>
+    <div class="error">Username allready taken</div>
+    <div id="status">
+      Users online: <span data-bind="numusers"></span> -
+      Match time remaining: <span data-bind="matchtime"></span>
+    </div>
+    <div id="credits">
+      <div>Report bugs and suggestions: <a href="mailto:zvitruolis@gmail.com">zvitruolis@gmail.com</a></div>
+      <div class="small">
+        Version <span id="version"></span>
+        - <a target="_blank" href="/rules.html">Game Rules</a>
+        - <a href="http://mods.curse.com/assets/sc2/unit-icon-and-wireframe-pack">Unit Icons </a></div>
+    </div>
+  </form>
+  <div id="blocker"></div>
+  <div id="game">
+    <div id="map"></div>
+    <div id="left">
+      <div id="log"></div>
+      <div id="resources">
+        <div class="info">Power: <span data-bind="power"></span></div>
+        <div class="info">Iron: <span data-bind="iron"></span></div>
+        <div class="info">Copper: <span data-bind="copper"></span></div>
+        <div class="info">Gold: <span data-bind="gold"></span></div>
+        <div class="info">Oil: <span data-bind="oil"></span></div>
+        <div class="info">Gas: <span data-bind="gas"></span></div>
+        <div class="info">Coal: <span data-bind="coal"></span></div>
+      </div>
+    </div>
+    <div id="cursor"></div>
+    <div id="right">
+      <div id="statusbox">
+        <div class="info">Turn time left: <span data-bind="time"></span></div>
+        <div class="info">Match time left: <span data-bind="match"></span></div>
+        <div class="info">Score: <span data-bind="score"></span></div>
+        <div class="info">Tick: <span data-bind="tick"></span></div>
+      </div>
+      <div id="infobox">
+        <div class="info">Sector: <span data-bind="sector"></span></div>
+        <div class="info">Terrain: <span data-bind="terrain"></span></div>
+        <div class="info">Resource: <span data-bind="resource"></span></div>
+        <div class="info">Field: <span data-bind="field"></span></div>
+      </div>
+      <div id="unitbox">
+        <div class="info">Unit: <span data-bind="unit"></span></div>
+        <div class="info">Owner: <span data-bind="owner"></span></div>
+        <div class="info">Damage: <span data-bind="damage"></span></div>
+        <div class="info">Bombard: <span data-bind="bombard"></span></div>
+      </div>
+      <ul id="scores">
+      </ul>
+    </div>
+    <div id="actions-wrapper" class="hidden">
+      <div id="actions" class="clearfix"></div>
+    </div>
+    <button class="endturn"></button>
+  </div>
+  <script type="text/javascript" src="js/Config.js"></script>
+  <script type="text/javascript">
+    var scripts = [
+      'js/Function.js',
+      'js/Array.js',
+      'js/String.js',
+      'js/Stream.js',
+      'js/Coords.js',
+      'js/Cost.js',
+      'js/CubeCoords.js',
+      'js/Tile.js',
+      'js/Sector.js',
+      'js/Intent.js',
+      'js/Unit.js',
+      'js/Rules.js',
+      'js/WebComponent.js',
+      'js/Renderer.js',
+      'js/Client.js']
+    if (window.location.port === "8080") {
+      scripts.push('js/NodeApi.js');
+    } else {
+      scripts.push(
+        'js/Api.js',
+        'js/PerlinGenerator.js',
+        'js/Map.js',
+        'js/Game.js'
+      );
+    };
+    if (Config.PRODUCTION) {
+      scripts = ['bundle.js'];
+    }
+    ScriptLoader.loadScripts(scripts, function() {
+      new Client();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <title>Epoh</title>
+  <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+  <canvas id="noise" style="border:1px solid black" width="600", height="600">
+  </canvas>
+  <script type="text/javascript">
+    var module = {};
+    var require = function(path) {
+      return window[path.replace('./', '')];
+    };
+  </script>
+  <script type="text/javascript" src="js/Function.js"></script>
+  <script type="text/javascript" src="js/Config.js"></script>
+  <script type="text/javascript" src="js/Coords.js"></script>
+  <script type="text/javascript" src="js/CubeCoords.js"></script>
+  <script type="text/javascript" src="js/Tile.js"></script>
+  <script type="text/javascript" src="js/Sector.js"></script>
+  <script type="text/javascript" src="js/PerlinGenerator.js"></script>
+  <script type="text/javascript" src="js/Map.js"></script>
+  <script type="text/javascript">
+    var colorMap = {
+      water: '#0000ff',
+      plains: '#ff0000',
+      mountains: '#ffffff',
+      hills: '#dddddd',
+      crystals: '#ff268c'
+    };
+    var generator = new Map(789221);
+    var canvas = document.getElementById("noise");
+    var ctx = canvas.getContext("2d");
+    for (var i =-100; i < 100; i++) {
+      for (var j = -100; j < 100; j++) {
+        var color = colorMap[generator.getFullTile(new Coords(i, j)).name];
+        ctx.fillStyle = color;
+        ctx.fillRect(i * 3 + 300, j * 3 + 300, 3, 3);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+ul {
+  list-style: none
+}
+
+#actions-wrapper.hidden {
+  bottom: -120px;
+}
+
+#actions-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transition: bottom 0.05s ease-out;
+}
+
+#actions {
+  position: relative;
+  z-index: 100;
+  left: -50%;
+}
+
+#actions .action {
+  margin-right: 10px;
+  float: left;
+  width: 76px;
+  color: #bbb;
+  font-size: 10px;
+}
+
+#actions .action button {
+  cursor: pointer;
+  outline: 0;
+  width: 76px;
+  height: 76px;
+}
+#actions .action:last-child {
+  margin-right: 0;
+}
+
+#actions button.selected {
+  outline: 2px dashed #5ff342;
+}
+
+.endturn {
+  display: block;
+  position: absolute;
+  z-index: 110;
+  width: 322px;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+  color: #bbb;
+  background-color: rgba(30, 30, 30, 0.8);
+  border-color: #444;
+}
+
+.endturn:hover {
+  background-color: rgba(130, 130, 130, 1);
+}
+.endturn::before {
+  content: 'End Turn';
+}
+
+.endturn.disabled::before {
+  content: 'Waiting for other players';
+}
+
+.endturn.resolving::before {
+  content: 'Resolving turn...';
+}
+
+#log {
+  width: 300px;
+  background-color: rgba(30, 30, 30, 0.8);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 400px;
+  z-index: 10;
+  border: 1px solid #444;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#log .message {
+  color: #bbb;
+  cursor: pointer;
+}
+#log .message:hover {
+  background-color: rgba(130, 130, 130, 0.5);
+}
+
+#right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#infobox, #statusbox, #scores, #unitbox, #actions, #resources {
+  min-width: 300px;
+  background-color: rgba(30, 30, 30, 0.8);
+  margin-top: -1px;
+  border: 1px solid #444;
+  padding: 10px;
+  position: relative;
+  z-index: 100;
+}
+
+#resources {
+  position: absolute;
+  bottom: 0;
+  height: 380px;
+}
+
+#actions {
+  min-width: auto;
+}
+
+#infobox .info,
+#unitbox .info,
+#unitbox .info span,
+#infobox .info span,
+#statusbox .info,
+#statusbox span,
+#log .message,
+#scores li,
+#resources .info, #resources span {
+  line-height: 1.4em;
+  font-size: 15px;
+  color: #bbb;
+}
+
+[data-bind='time'] {
+  color: lightgreen !important
+}
+
+[data-bind='power'] {
+  color: #7DF9FF !important
+}

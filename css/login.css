@@ -1,0 +1,62 @@
+#login {
+  margin: 0 auto;
+  width: 474px;
+  position: absolute;
+  left: 50%;
+  margin-left: -237px;
+  margin-top: -280px;
+  top: 50%;
+}
+
+#login input, button {
+  padding: 10px;
+  border: 1px solid #aaa;
+  outline: 0;
+}
+
+#login input {
+  width: 300px;
+  float: left;
+  border-right: 0px;
+  color: #333;
+}
+
+#login #description {
+  margin-bottom: 30px;
+  text-align: justify;
+  color: #333;
+}
+
+#login button {
+  width: 150px;
+  float: left;
+  cursor: pointer;
+  color: #333;
+}
+
+#login .error {
+  margin-top: 20px;
+  color: red;
+  display: none;
+}
+
+#login #credits {
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+}
+
+#login #credits > div {
+  margin-top: 10px;
+}
+
+#login #credits .small {
+  font-size: 12px;
+}
+
+#login #status {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 100px;
+}
+

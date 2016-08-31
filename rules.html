@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head><title>Rules</title></head>
+<body>
+<pre>
+% about
+
+Discover &amp; mine resources, build your army, expand and conquer your enemies!
+Player with the biggest score wins.
+
+% guide
+
+Your first turn:
+
+LMB on your base. Base actions will appear at the bottom of the screen. There is one worker garrisoned in the base.
+You can ungarrison it by clicking ungarrison action and destination tile. All units move only by one tile so you can
+only ungarrison worker next to the base. Select base again, you can build a new worker by selecting 'worker' action
+and destination tile. Worker costs 100 iron. You can see your current resources in bottom left of the screen in format
+[resource amount]/[max storage] income.
+
+Discover resources & build a mine:
+
+Move workers around the map to discover resources on map tiles. Resource type is
+indicated by small circle on tile. Also tile & unit stats can be visible while hovering on tile in the top right section of the map.
+When you discover resource on tile with a worker you can build mine on it. To build a mine select worker and destination tile.
+Each building requires resources and you will not be allowed to build if you don't have enought of them. Building a mine on a tile
+with resource will increase your income of that resource. Building bigmine will allso increase storage capacity. You can see
+how much resources each building/unit costs by hoving on their build action image.
+
+
+Build units:
+
+Select base to build units. Your combat units can fight enemy units & takover enemy structures (except rover).
+
+Special worker buildings:
+
+Build amplifier to expand territory. Build teleport for fast unit transportation between tiles. Build powerplants on gas, oil or coal when you
+run out of power.
+
+% controls
+
+LMB: elect
+RMB: center map
+
+protip: click on log event to go to event location
+
+% turn resolution order
+
+1) resolve combat without removing units
+2) resolve unit health and remove dead units
+3) resolve deconstruction
+4) resolve movement
+5) resolve restacking
+6) resolve building
+7) resolve teleporting
+
+% combat
+
+1) Unit attack damage is proportional to its health.
+2) Unit that does not move and defends agains multiple enemies splits attack dmg by number of enemies and defends agains every attacker
+3) Attacking unit does not get defence modifier if defender is not moving
+4) If unit runs away to empty tile while being attacked it gets only half damage from attacker and no dmg is taken by attacker. No terrain def modifiers for defender
+5) If structure is garrisoned then combat happens between attacker and garrisoned unit
+6) units receive defence from tiles or garrison if they are garrisoned
+7) garrisoned units can not be ungarrisoned onto enemy unit (they are sieged)
+
+% resolve health
+
+1) health is rounded up
+2) if unit health is less than 0 it is removed from the map
+
+% movement
+
+1) If two or more units go to same tile, first placed intent is resolved first.
+2) If garrisonable units moves onto structure, the structure is garrisoned
+3) Garissoned structure changes owner depending on garrisoned unit
+4) worker can discover resources when moving on tile
+
+% restacking
+
+1) If unit moves onto same type non-moving friendly unit then dest health is refilled from source health
+
+% building
+
+1) You can only build if you have enough resources
+2) You can only build on tile with your field (except teleports)
+3) Mines can only be built on resources tile
+4) Power plants can be build on oil/coal/gas tiles
+5) If building intent fails player is refunded (if build target tile is occupied)
+6) If worker/base is destroyed with build ordered, build is not refunded
+7) each teleport is linked to previously built unlinked teleport
+</pre>
+</body>
+</html>
