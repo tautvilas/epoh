@@ -2,7 +2,5 @@
 config.js
 lib
 node_modules
-js/Config.js
 bundle.js
-jquery.min.js
 npm-debug.log
