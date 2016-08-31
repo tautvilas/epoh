@@ -12,7 +12,7 @@ Singleplayer demo: https://tautvilas.github.io/epoh/
 
 ###Your first turn:###
 
-LMB on your base. Base actions will appear at the bottom of the screen. There is one worker garrisoned in the base.
+Click on your base. Base actions will appear at the bottom of the screen. There is one worker garrisoned in the base.
 You can ungarrison it by clicking ungarrison action and destination tile. All units move only by one tile so you can
 only ungarrison worker next to the base. Select base again, you can build a new worker by selecting 'worker' action
 and destination tile. Worker costs 100 iron. You can see your current resources in bottom left of the screen in format
@@ -38,7 +38,7 @@ run out of power.
 
 More about game mechanics can be found [here](https://tautvilas.github.io/epoh/rules.html)
 
-## Local installation ##
+## Local installation & Development ##
 
 1) npm install
 
@@ -47,8 +47,6 @@ More about game mechanics can be found [here](https://tautvilas.github.io/epoh/r
 2b) run "node serve" and open local multiplayer server at localhost:8080
 
 Change game settings in js/Config.js
-
-## Development ###
 
 To run unit tests:
 
