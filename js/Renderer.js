@@ -7,6 +7,7 @@ var Coords = require('./Coords');
 var Cost = require('./Cost');
 var Config = require('./Config');
 var Stream = require('./Stream');
+var Q = require('./Q');
 var WebComponent = require('./WebComponent');
 var Unit = require('./Unit');
 var Intent = require('./Intent');
@@ -91,9 +92,11 @@ var Renderer = function(tileStream) {
   };
 
   function updateScores(scores) {
-    $('#scores').empty();
+    Q.byId('scores').innerHTML = '';
     scores.forEach(function(s) {
-      $('#scores').append($('<li>', {text: '_: _'.printf(s.name, s.score)}));
+      var score = Q.create('li');
+      score.textContent = '_: _'.printf(s.name, s.score);
+      Q.byId('scores').appendChild(score);
     });
   }
 
