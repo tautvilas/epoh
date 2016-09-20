@@ -141,8 +141,9 @@ var Renderer = function(tileStream) {
       return false;
     });
 
-    $('#actions').empty();
-    document.getElementById('actions-wrapper').className = '';
+    var $actions = Q.byId('actions');
+    $actions.innerHTML = '';
+    Q.byId('actions-wrapper').className = '';
 
     var actions = unit.actions.slice();
     if (unit.garrison) actions.unshift(Intent.UNGARRISON);
@@ -152,38 +153,37 @@ var Renderer = function(tileStream) {
       var unit = Unit.fromName(act);
       var cost = unit ? Cost.toString(unit.cost) : '-';
       var img = 'url(img/unit/_.png)'.printf(act);
-      var button = $('<button/>', {
-        style: 'background-image:' + img,
-      });
-      var action = $('<div/>', {
-        'class': 'action',
-        title: cost
-      });
+      var $button = Q.create('button');
+      $button.style['background-image'] = img;
+      var $action = Q.create('div');
+      $action.className = 'action';
+      $action.title = cost;
       if (unit && !Cost.covers(unit.cost, self.player.resources)) {
-        action.css('opacity', '0.25');
+        $action.style.opacity = '0.25';
       }
-      action.append(act);
-      action.append(button);
+      $action.textContent = act;
+      $action.appendChild($button);
       if (!index) {
-        action.find('button').addClass('selected');
+        $action.querySelector('button').className = 'selected';
       }
-      action.click((function(act) {
+      $action.onclick = (function(act) {
         self.intentType = act;
-        $('#actions').find('button').removeClass('selected');
-        this.find('button').addClass('selected');
-      }).bind(action, act));
-      $('#actions').append(action);
+        var $selectedButton = $actions.querySelector('button[class=selected]');
+        if ($selectedButton) {
+          $selectedButton.className = '';
+        }
+        this.querySelector('button').className = 'selected';
+      }).bind($action, act);
+      $actions.appendChild($action);
     });
     if (intents.length) {
-      var action = $('<div/>', {
-        text: 'cancel',
-        'class': 'action'
-      });
-      var button = $('<button/>', {
-        style: 'background-image:' + 'url(img/unit/cancel.png)',
-      });
-      action.append(button);
-      action.click(function() {
+      var $action = Q.create('div');
+      $action.textContent = 'cancel';
+      $action.className = 'action';
+      var $button = Q.create('button');
+      $button.style['background-image'] = 'url(img/unit/cancel.png)';
+      $action.appendChild($button);
+      $action.onclick = function() {
         intents.forEach(function(t) {
           var intent = t.intents[tile.coords];
           self.player.resources = Cost.add(self.player.resources, intent.cost);
@@ -198,9 +198,9 @@ var Renderer = function(tileStream) {
             coords: tile.coords
           });
         });
-        document.getElementById('actions-wrapper').className = 'hidden';
-      });
-      $('#actions').append(action);
+        Q.byId('actions-wrapper').className = 'hidden';
+      };
+      $actions.appendChild($action);
     }
   }
 
