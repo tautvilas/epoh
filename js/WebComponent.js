@@ -1,11 +1,13 @@
 'use strict';
 
+var Q = require('./Q');
+
 var WebComponent = function(id, initialState) {
   var state = initialState || {};
-  var template = $('#' + id);
+  var template = Q.byId(id);
 
   function updateVal(key) {
-    template.find('[data-bind=' + key + ']').text(state[key]);
+    template.querySelector('[data-bind=' + key + ']').textContent = state[key];
   }
 
   this.setState = function(newState) {
