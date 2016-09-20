@@ -101,14 +101,16 @@ var Renderer = function(tileStream) {
   }
 
   function updateLog() {
-    $('#log').empty();
+    var log = Q.byId('log');
+    log.innerHTML = '';
     self.player.log.forEach(function(l) {
-      var message = $('<div>', {text: '[_] _'.printf(l.tick, l.message), 'class': 'message'});
-      message.click((function() {
+      var message = Q.create('div');
+      message.textContent = '[_] _'.printf(l.tick, l.message);
+      message.className = 'message';
+      message.onclick = (function() {
         self.setCenter(Coords.fromString(this.coords.representation));
-      }).bind(l));
-      $('#log').append(message);
-      var log = document.getElementById("log");
+      }).bind(l);
+      log.appendChild(message);
       log.scrollTop = log.scrollHeight;
     });
   }
