@@ -265,14 +265,16 @@ var Renderer = function(tileStream) {
   }
 
   function renderIntents(tile, coords) {
-    var hex = self.tileElements[coords];
-    $(hex).find('.intent').remove();
+    var $hex = self.tileElements[coords];
+    $hex.querySelectorAll('.intent').forEach(function(el) {el.remove();});
     for (var c in tile.intents) {
       var intentId = 'intent-_'.printf(c);
-      var intent = $('<div />', {'class': 'intent', id: intentId});
+      var $intent = Q.create('div');
+      $intent.className = 'intent';
+      $intent.setAttribute('id', intentId);
       var deg = -180 - 60 * tile.intents[c].direction;
-      intent.css('transform', 'rotate(_deg)'.printf(deg));
-      $(hex).append(intent);
+      $intent.style.transform = 'rotate(_deg)'.printf(deg);
+      $hex.appendChild($intent);
     }
   }
 
