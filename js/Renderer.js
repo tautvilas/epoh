@@ -266,7 +266,10 @@ var Renderer = function(tileStream) {
 
   function renderIntents(tile, coords) {
     var $hex = self.tileElements[coords];
-    $hex.querySelectorAll('.intent').forEach(function(el) {el.remove();});
+    var $intents = $hex.querySelectorAll('.intent');
+    for (var i = 0; i < $intents.length; i++) {
+      $intents[i].remove();
+    }
     for (var c in tile.intents) {
       var intentId = 'intent-_'.printf(c);
       var $intent = Q.create('div');
@@ -280,7 +283,10 @@ var Renderer = function(tileStream) {
 
   function renderFields(tile, coords) {
     var $hex = self.tileElements[coords];
-    $hex.querySelectorAll('.field').forEach(function(el) {el.remove();});
+    var $fields = $hex.querySelectorAll('.field');
+    for (var i = 0; i < $fields.length; i++) {
+      $fields[i].remove();
+    }
     //var odd = (self.centerTileScreen.y % 2) ? !(self.center.y % 2) : (self.center.y % 2);
     //var ccn = CubeCoords.fromOffset(coords, odd).neighbours();
     var ccn = CubeCoords.fromOffset(tile.coords).neighbours();
