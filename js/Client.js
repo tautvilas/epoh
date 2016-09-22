@@ -7,6 +7,7 @@ var Sector = require('./Sector');
 var Config = require('./Config');
 var Coords = require('./Coords');
 var Api = require('./Api');
+var Q = require('./Q');
 
 var Client = function() {
   var mapCache = {};
@@ -27,8 +28,8 @@ var Client = function() {
       bus.push([].concat.apply([], data));
       if (dirtyMap) {
         setTimeout(function() {
-          $('.endturn')[0].className = 'endturn';
-          $('#blocker').removeClass('visible');
+          Q.byClass('endturn')[0].className = 'endturn';
+          Q.byId('blocker').className = '';
         }, 100);
         dirtyMap = false;
       }
@@ -37,20 +38,20 @@ var Client = function() {
 
   var addPlayer = function(username) {
     api.addPlayer(username).then(function(player) {
-      $('.endturn').click(function() {
-        $('title').text('Epoh');
+      Q.byClass('endturn')[0].onclick = function() {
+        Q.byTag('title')[0].textContent = 'Epoh';
         api.endTurn(username);
-        $('.endturn').addClass('disabled');
-      });
-      $('#game').show();
-      $('#login').hide();
+        Q.byClass('endturn')[0].classList.add('disabled');
+      };
+      Q.byId('game').style.display = 'block';
+      Q.byId('login').style.display = 'none';
       var renderer = initRenderer(bus);
       api.listen(function(evt) {
         if (evt.type === 'end') {
           alert('Match time is over. Refresh page to restart');
         } else if (evt.type === 'resolution') {
-          $('#blocker').addClass('visible');
-          $('.endturn')[0].className = 'endturn resolving';
+          Q.byId('blocker').className = 'visible';
+          Q.byClass('endturn')[0].className = 'endturn resolving';
         } else if (evt.type === 'orders') {
           api.getStatus(username).then(function(e) {
             if (!e.player.units) {
@@ -62,7 +63,7 @@ var Client = function() {
               dirtyMap = true;
               mapCache = {};
               renderer.reset(e);
-              $('title').text('* Epoh');
+              Q.byTag('title')[0].textContent = '* Epoh';
             }
           });
         }
@@ -70,13 +71,13 @@ var Client = function() {
       api.getStatus(username).then(function(e) {
         //mapCache = {};
         renderer.reset(e);
-        $('title').text('* Epoh');
+        Q.byTag('title')[0].textContent = '* Epoh';
       });
       renderer.setCenter(Coords.fromString(player.base.representation));
     }).fail(function() {
-      $('#login').show();
-      $('#game').hide();
-      $('#login .error').show();
+      Q.byId('game').style.display = 'none';
+      Q.byId('login').style.display = 'block';
+      Q.byId('login').querySelector('.error').style.display = 'block';
     });
   };
 

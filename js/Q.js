@@ -12,4 +12,8 @@ Q.byTag = function(tag) {
   return document.getElementsByTagName(tag);
 };
 
+Q.byClass = function(cl) {
+  return document.getElementsByClassName(cl);
+};
+
 module.exports = Q;

@@ -338,7 +338,7 @@ var Renderer = function(tileStream) {
       $unit.style['-webkit-filter'] = 'hue-rotate(_deg)'.printf(tile.unit.player === self.player.name ? 0 : tile.unit.hue);
       $unit.style.top = position.y + 'px';
       $unit.style.left = position.x + 'px';
-      $unit.style.display = '';
+      $unit.style.display = 'block';
     } else {
       $hex.setAttribute('active', 'false');
     }
