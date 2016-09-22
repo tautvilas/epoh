@@ -300,29 +300,31 @@ var Renderer = function(tileStream) {
   }
 
   function renderUnits(tile, coords, position) {
-    var hex = self.tileElements[coords];
+    var $hex = self.tileElements[coords];
     if (tile.unit && !tile.shrouded) {
-      var unit = self.units[tile.unit.id];
-      if (!unit) {
-        unit = $('<div/>', {
-          'class': 'unit'
-        }).append($('<div/>', {'class': 'health'}));
-        $('#map').append(unit);
-        self.units[tile.unit.id] = unit;
+      var $unit = self.units[tile.unit.id];
+      if (!$unit) {
+        $unit = Q.create('div');
+        $unit.className = 'unit';
+        var $health = Q.create('div');
+        $health.className = 'health';
+        $unit.appendChild($health);
+        Q.byId('map').appendChild($unit);
+        self.units[tile.unit.id] = $unit;
       }
-      unit.rendered = true;
+      $unit.rendered = true;
       if (tile.unit.player !== self.player.name) {
-        unit.addClass('enemy');
+        $unit.classList.add('enemy');
       } else {
-        unit.removeClass('enemy');
+        $unit.classList.remove('enemy');
       }
       if (tile.unit.garrison) {
-        unit.addClass('garrisoned');
+        $unit.classList.add('garrisoned');
       } else {
-        unit.removeClass('garrisoned');
+        $unit.classList.remove('garrisoned');
       }
-      unit.attr('active', tile.unit.selected || false);
-      $(hex).attr('active', tile.unit.selected || false);
+      $unit.setAttribute('active', tile.unit.selected || false);
+      $hex.setAttribute('active', tile.unit.selected || false);
       var img = 'url(img/unit/_.png)'.printf(tile.unit.name);
       var healthBarWidth = 0;
       if (tile.unit.type !== Unit.TYPE_STRUCTURE) {
@@ -330,18 +332,15 @@ var Renderer = function(tileStream) {
       } else if (tile.unit.garrison) {
         healthBarWidth = (tile.unit.garrison.health / tile.unit.garrison.maxHealth * 100);
       }
-      unit.find('.health').css({
-        'width':  healthBarWidth + '%'
-      });
-      unit.css({
-        'border-width': Config.DEBUG_VIEW ? 1 : 0,
-        'background-image': img,
-        '-webkit-filter': 'hue-rotate(_deg)'.printf(tile.unit.player === self.player.name ? 0 : tile.unit.hue),
-        top: position.y,
-        left: position.x
-      }).show();
+      $unit.querySelector('.health').style.width = healthBarWidth + '%';
+      $unit.style['border-width'] = Config.DEBUG_VIEW ? 1 : 0;
+      $unit.style['background-image'] = img;
+      $unit.style['-webkit-filter'] = 'hue-rotate(_deg)'.printf(tile.unit.player === self.player.name ? 0 : tile.unit.hue);
+      $unit.style.top = position.y + 'px';
+      $unit.style.left = position.x + 'px';
+      $unit.style.display = '';
     } else {
-      $(hex).attr('active', 'false');
+      $hex.setAttribute('active', 'false');
     }
   }
 
