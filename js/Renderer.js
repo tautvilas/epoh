@@ -448,16 +448,16 @@ var Renderer = function(tileStream) {
   }
 
   self.setCenter = function(coords) {
-    $('body').addClass('notransition');
+    Q.byTag('body')[0].className = 'notransition';
     self.center = coords;
     self.render();
-    $('body').removeClass('notransition');
+    Q.byTag('body')[0].className = '';
   };
 
   $(window).resize(function() {
-    $('body').addClass('notransition');
+    Q.byTag('body')[0].className = 'notransition';
     self.render();
-    $('body').removeClass('notransition');
+    Q.byTag('body')[0].className = '';
   });
 
   var tileCoordsToScreenCoords = Function.prototype.memoized.bind(
