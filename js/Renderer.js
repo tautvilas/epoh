@@ -279,8 +279,8 @@ var Renderer = function(tileStream) {
   }
 
   function renderFields(tile, coords) {
-    var hex = self.tileElements[coords];
-    $(hex).find('.field').remove();
+    var $hex = self.tileElements[coords];
+    $hex.querySelectorAll('.field').forEach(function(el) {el.remove();});
     //var odd = (self.centerTileScreen.y % 2) ? !(self.center.y % 2) : (self.center.y % 2);
     //var ccn = CubeCoords.fromOffset(coords, odd).neighbours();
     var ccn = CubeCoords.fromOffset(tile.coords).neighbours();
@@ -291,10 +291,11 @@ var Renderer = function(tileStream) {
       if (!tile2 || tile2.field === tile.field || !tile.field) return;
       var clazz = 'field';
       if (tile.field !== self.player.name) clazz += ' enemy';
-      var field = $('<div />', {'class': clazz});
+      var $field = Q.create('div');
+      $field.className = clazz;
       var deg = -180 - 60 * i;
-      field.css('transform', 'rotate(_deg)'.printf(deg));
-      $(hex).append(field);
+      $field.style.transform = 'rotate(_deg)'.printf(deg);
+      $hex.appendChild($field);
     });
   }
 
