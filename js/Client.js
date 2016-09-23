@@ -116,21 +116,21 @@ var Client = function() {
       matchtime: Math.round(currentUsername.matchtime / 60 / 1000) + ' mins'
     });
     if (!Config.USERNAME_VIEW || currentUsername.user) {
-      $('#game').show();
+      Q.byId('game').style.display = 'block';
        username = window.location.search.replace("?username=", "") ||
                   currentUsername.user ||
                   (new Date()).getTime().toString();
       addPlayer(username);
     } else {
-      $('#login').show();
-      $('#username').focus();
-      $('#version').text(currentUsername.version);
-      $('#start').click(function() {
-        username = $('#username').val();
+      Q.byId('login').style.display = 'block';
+      Q.byId('username').focus();
+      Q.byId('version').textContent = currentUsername.version;
+      Q.byId('start').onclick = function() {
+        username = Q.byId('username').value;
         if (username) {
           addPlayer(username);
         }
-      });
+      };
     }
   });
 };
