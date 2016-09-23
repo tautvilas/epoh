@@ -409,15 +409,15 @@ var Renderer = function(tileStream) {
           field: tile.field ? tile.field : 'None'
         });
 
-        $('#cursor').hide();
+        var $cursor = Q.byId('cursor');
+        $cursor.style.display= 'none';
         if (self.selectedTile && self.selectedTile.coords+'' !== tile.coords+'') {
           if (validateIntent(self.selectedTile, tile)) {
             var pos = screenCoordsToScreenPosition(this, tile.coords, self.positionDiff, self.center);
-            $('#cursor').css({
-              left: pos.x + 1,
-              top: pos.y + 1
-            });
-            $('#cursor').addClass('hex').show();
+            $cursor.style.left = (pos.x + 1) + 'px';
+            $cursor.style.top = (pos.y + 1) + 'px';
+            $cursor.classList.add('hex');
+            $cursor.style.display = 'block';
           }
         }
       }).bind(screenCoords));
