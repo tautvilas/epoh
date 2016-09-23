@@ -459,11 +459,11 @@ var Renderer = function(tileStream) {
     Q.byTag('body')[0].className = '';
   };
 
-  $(window).resize(function() {
+  window.onresize = function() {
     Q.byTag('body')[0].className = 'notransition';
     self.render();
     Q.byTag('body')[0].className = '';
-  });
+  };
 
   var tileCoordsToScreenCoords = Function.prototype.memoized.bind(
     function _tile_coords_to_screen_coords(tileCoords, centerTileScreenCoords, centerTileCoords) {
