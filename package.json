@@ -15,6 +15,9 @@
     "mocha": "^2.4.5",
     "uglify-js": "^2.6.2"
   },
+  "scripts": {
+    "postinstall": "cp ./js/Config.dst.js ./js/Config.js"
+  },
   "author": "Tautvilas <mecinskas@gmail.com>",
   "license": "ISC"
 }
