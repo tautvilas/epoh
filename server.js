@@ -30,7 +30,6 @@ app.use('/favicon.ico', express.static('img/favicon.ico'));
 app.use('/index.html', express.static('index.html'));
 app.use('/rules.html', express.static('rules.html'));
 app.use('/main.js', express.static('main.js'));
-app.use('/jquery.min.js', express.static('node_modules/jquery/dist/jquery.min.js'));
 
 if (Config.PRODUCTION) {
   app.use('/js/Config.js', express.static('js/Config.js'));

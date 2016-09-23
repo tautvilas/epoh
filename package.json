@@ -8,16 +8,12 @@
     "cookie-parser": "^1.4.0",
     "crypto": "0.0.3",
     "express": "^4.13.3",
-    "jquery": "^2.2.3",
     "websocket": "^1.0.22"
   },
   "devDependencies": {
     "jshint": "^2.9.2",
     "mocha": "^2.4.5",
     "uglify-js": "^2.6.2"
-  },
-  "scripts": {
-    "postinstall": "ln -sf node_modules/jquery/dist/jquery.min.js;cp js/Config.dst.js js/Config.js"
   },
   "author": "Tautvilas <mecinskas@gmail.com>",
   "license": "ISC"
