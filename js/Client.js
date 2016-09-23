@@ -74,7 +74,7 @@ var Client = function() {
         Q.byTag('title')[0].textContent = '* Epoh';
       });
       renderer.setCenter(Coords.fromString(player.base.representation));
-    }).fail(function() {
+    }).catch(function() {
       Q.byId('game').style.display = 'none';
       Q.byId('login').style.display = 'block';
       Q.byId('login').querySelector('.error').style.display = 'block';

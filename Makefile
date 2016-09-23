@@ -12,6 +12,7 @@ client_files = js/Function.js \
 							 js/Rules.js \
 							 js/WebComponent.js \
 							 js/Q.js \
+							 js/Http.js \
 							 js/Renderer.js \
 							 js/Client.js \
 							 js/NodeApi.js
