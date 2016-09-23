@@ -501,8 +501,8 @@ var Renderer = function(tileStream) {
 
 
   self.render = function() {
-    var viewport = $('#map');
-    var windowSize = new Coords(viewport.width(), viewport.height());
+    var $viewport = Q.byId('map');
+    var windowSize = new Coords($viewport.offsetWidth, $viewport.offsetHeight);
     var windowCenter = windowSize.uscale(0.5).floor();
     var tileCenter = windowCenter.substract(new Coords(Tile.WIDTH / 2, Tile.HEIGHT / 4)).floor();
 
@@ -514,8 +514,8 @@ var Renderer = function(tileStream) {
     for (var id in self.units) {
       self.units[id].rendered = false;
     }
-    for (var x = -1; x * Tile.WIDTH < viewport.width() + Tile.WIDTH; x++) {
-      for (var y = -1; y * Tile.HEIGHT / 2 < viewport.height(); y++) {
+    for (var x = -1; x * Tile.WIDTH < $viewport.offsetWidth + Tile.WIDTH; x++) {
+      for (var y = -1; y * Tile.HEIGHT / 2 < $viewport.offsetHeight; y++) {
         var screenCoords = new Coords(x, y);
         var tileCoords = screenCoordsToTileCoords(screenCoords, self.centerTileScreen, self.center);
         var tile = self.tiles[tileCoords];
