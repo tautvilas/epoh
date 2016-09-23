@@ -162,7 +162,7 @@ game.events.onValue(function(value) {
     });
     console.log('MATCH ENDED', value.scores.length);
     if (value.scores.length) {
-      console.log('Winner: _ (_)'.printf(value.scores[0].name, value.scores[0].score));
+      console.log('[_] Winner: _ (_)'.printf(Date(), value.scores[0].name, value.scores[0].score));
     }
     process.exit();
   }
