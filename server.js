@@ -131,7 +131,7 @@ app.post('/turn', function(req, res) {
 });
 
 var server = app.listen(Config.PORT, function() {
-  console.log('Epoh server online');
+  console.log('Epoh server online on port ', Config.PORT);
 });
 
 /* Websockets server */
