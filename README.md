@@ -6,7 +6,7 @@ Multiplayer turn-based browser strategy game
 
 Gameplay video: https://www.youtube.com/watch?v=Sj8hVMo-hfs
 
-Multiplayer server: http://www.epoh.io
+Multiplayer server: [Offline]
 
 Singleplayer demo: https://tautvilas.github.io/epoh/
 
